@@ -35,7 +35,7 @@ public class Controller {
     private int threads = -1, finishedThreads = 0;
     private boolean onSlider = false, inProcess = false, needRefresh = false;
     private String dictionary = "1234567890";
-    private Color busyCol = new Color(0,0,0,0.2), backCol = new Color(199f/256, 249f/256, 197f/256, 1);
+    private Color busyCol = new Color(0,0,0,0.2);
 
     @FXML
     void initialize() {
@@ -156,7 +156,7 @@ public class Controller {
         }
         yOff*=(double)maxPixel/canvas.getHeight();
         gc.setFont(new Font(fontSize));
-        gc.setFill(Color.BLACK);
+        gc.setFill(Color.GREY);
         int partOffset = 0;
         for (int i = 0; i < threads; i++) {
             partOffset += 10;
@@ -165,8 +165,9 @@ public class Controller {
                 gc.fillText("Core #" + i + ", steps: " + threadInfo[i].stepsMade + ", range: " + threadInfo[i].rangeOccupied + "\nParralel Execution Time: " + (float) threadInfo[i].timeExecuted / 1000 + "s", xOff, currentYOffset, xWidth);
             }
         }
-        gc.setFill(backCol);
+        gc.setFill(Color.BLACK);
         gc.fillRect(0, 0, canvas.getWidth(), yTopOff);
+        gc.setStroke(Color.WHITESMOKE);
         gc.setTextAlign(TextAlignment.CENTER);
         gc.strokeText("Program execution time:"+(float)executionTime/1000+"s. Result: "+result, canvas.getWidth()/2, (double)yTopOff/2+(double)fontSize/2, xWidth);
         gc.setTextAlign(TextAlignment.LEFT);
